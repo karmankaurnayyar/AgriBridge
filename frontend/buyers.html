@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buyer Requests — AgriBridge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="dashboard.html">AgriBridge</a>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="farms.html">Farms</a>
+      <a href="crops.html">Crops</a>
+      <a href="harvests.html">Harvest Lots</a>
+      <a href="buyers.html">Buyer Requests</a>
+      <a href="#" onclick="AgriBridgeAuth.logout(); return false;">Log Out</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>Buyer Requests <span class="badge planned">Planned — Week 4</span></h1>
+      <div class="placeholder-note">
+        <p>Buyers will be able to post purchase requirements and review rule-based matches against available harvest lots.</p>
+        <p>The database table and JPA entity for this module already exist
+        (see <code>database/schema.sql</code> and the corresponding entity
+        under <code>backend/src/main/java/com/agribridge/</code>), but the
+        service, controller and this page's functionality are planned for
+        <strong>Week 4</strong> — see <code>docs/roadmap.md</code> for the
+        detailed breakdown.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">AgriBridge · Individual Project · Karman Kaur Nayyar · Week 2</footer>
+  <script src="js/api.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", () => AgriBridgeAuth.requireLogin());</script>
+</body>
+</html>

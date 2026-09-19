@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — AgriBridge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="index.html">AgriBridge</a>
+    <nav><a href="login.html">Log in instead</a></nav>
+  </header>
+
+  <main style="max-width: 440px;">
+    <div class="card">
+      <h1>Create an Account</h1>
+      <p class="subtitle">Registers against the implemented /api/auth/register endpoint.</p>
+
+      <div id="form-alert"></div>
+
+      <form id="register-form">
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" minlength="8" required />
+          <small style="color:#8a8a8a;">At least 8 characters.</small>
+        </div>
+        <div class="field">
+          <label for="role">I am a...</label>
+          <select id="role" required>
+            <option value="FARMER">Farmer</option>
+            <option value="BUYER">Buyer</option>
+            <option value="ADMIN">Administrator</option>
+          </select>
+        </div>
+        <button type="submit">Create Account</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="app-footer">AgriBridge · Individual Project · Karman Kaur Nayyar · Week 2</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

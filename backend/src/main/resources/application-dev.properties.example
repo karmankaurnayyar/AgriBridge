@@ -1,0 +1,15 @@
+# Copy this file to application-dev.properties (which is git-ignored) and
+# fill in values for your local MySQL instance. Then run with:
+#   mvn spring-boot:run -Dspring-boot.run.profiles=dev
+#
+# Do NOT commit application-dev.properties or any file containing real
+# credentials.
+
+DB_URL=jdbc:mysql://localhost:3306/agribridge?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+DB_USERNAME=root
+DB_PASSWORD=your_local_mysql_password
+JWT_SECRET=replace-with-a-long-random-development-only-secret
+JWT_EXPIRATION_MS=3600000
+SERVER_PORT=8080
+JPA_SHOW_SQL=true
+LOG_LEVEL=DEBUG

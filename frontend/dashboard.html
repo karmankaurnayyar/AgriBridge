@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — AgriBridge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="dashboard.html">AgriBridge</a>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="farms.html">Farms</a>
+      <a href="crops.html">Crops</a>
+      <a href="harvests.html">Harvest Lots</a>
+      <a href="buyers.html">Buyer Requests</a>
+      <a href="#" onclick="AgriBridgeAuth.logout(); return false;">Log Out</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="dashboard-alert"></div>
+    <div class="card">
+      <h1 id="dashboard-greeting">Welcome</h1>
+      <p class="subtitle">
+        Farm count below is live, from the implemented Farm Management API.
+        The remaining figures are placeholders for modules planned in
+        Weeks 3–4 — see <code>docs/roadmap.md</code>.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="value" id="stat-farms">—</div>
+          <div class="label">Total Farms</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">—</div>
+          <div class="label">Total Crops<br /><span class="badge planned">Week 3</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="value">—</div>
+          <div class="label">Available Harvest Lots<br /><span class="badge planned">Week 3</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="value">—</div>
+          <div class="label">Buyer Requests<br /><span class="badge planned">Week 4</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="value">—</div>
+          <div class="label">Matches<br /><span class="badge planned">Week 4</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Quick Links</h2>
+      <p><a class="btn" href="farms.html">Manage Farms</a></p>
+    </div>
+  </main>
+
+  <footer class="app-footer">AgriBridge · Individual Project · Karman Kaur Nayyar · Week 2</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

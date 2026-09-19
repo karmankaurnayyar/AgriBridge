@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In — AgriBridge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="index.html">AgriBridge</a>
+    <nav><a href="register.html">Register instead</a></nav>
+  </header>
+
+  <main style="max-width: 440px;">
+    <div class="card">
+      <h1>Log In</h1>
+      <p class="subtitle">Sample accounts (password: <code>Password123</code>):<br />
+        ravi.kumar@example.com (Farmer) · anil.traders@example.com (Buyer)</p>
+
+      <div id="form-alert"></div>
+
+      <form id="login-form">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="app-footer">AgriBridge · Individual Project · Karman Kaur Nayyar · Week 2</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

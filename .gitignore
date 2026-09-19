@@ -1,0 +1,27 @@
+# --- Backend (Maven / Java) ---
+backend/target/
+backend/src/main/resources/application-dev.properties
+*.class
+*.jar
+!backend/.mvn/wrapper/maven-wrapper.jar
+hs_err_pid*
+
+# --- IDE ---
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Environment / secrets ---
+.env
+*.env.local
+
+# --- Logs ---
+*.log
+logs/

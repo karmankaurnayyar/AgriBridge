@@ -1,0 +1,154 @@
+{
+  "info": {
+    "name": "AgriBridge API Collection (Week 2)",
+    "description": "Covers implemented Authentication and Farm Management endpoints, plus a 'Planned (Week 3-4)' folder documenting the agreed contract for endpoints not yet built. See docs/api-documentation.md for full details.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "email", "value": "ravi.kumar@example.com" },
+    { "key": "password", "value": "SecurePass123" },
+    { "key": "farmId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Authentication (Implemented)",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ravi Kumar\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"role\": \"FARMER\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/register", "host": ["{{baseUrl}}"], "path": ["api", "auth", "register"] }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api", "auth", "login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Farm Management (Implemented)",
+      "auth": {
+        "type": "basic",
+        "basic": [
+          { "key": "username", "value": "{{email}}" },
+          { "key": "password", "value": "{{password}}" }
+        ]
+      },
+      "item": [
+        {
+          "name": "List My Farms",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/farms", "host": ["{{baseUrl}}"], "path": ["api", "farms"] }
+          }
+        },
+        {
+          "name": "Create Farm",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farmName\": \"Green Valley Farm\",\n  \"location\": \"Village Rampur, Hoshiarpur, Punjab\",\n  \"landArea\": 2.5,\n  \"soilType\": \"Loamy\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/farms", "host": ["{{baseUrl}}"], "path": ["api", "farms"] }
+          }
+        },
+        {
+          "name": "Get Farm by ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/farms/{{farmId}}", "host": ["{{baseUrl}}"], "path": ["api", "farms", "{{farmId}}"] }
+          }
+        },
+        {
+          "name": "Update Farm",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farmName\": \"Green Valley Farm (Updated)\",\n  \"location\": \"Village Rampur, Hoshiarpur, Punjab\",\n  \"landArea\": 3.0,\n  \"soilType\": \"Loamy\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/farms/{{farmId}}", "host": ["{{baseUrl}}"], "path": ["api", "farms", "{{farmId}}"] }
+          }
+        },
+        {
+          "name": "Delete Farm",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/farms/{{farmId}}", "host": ["{{baseUrl}}"], "path": ["api", "farms", "{{farmId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Planned (Week 3-4, not yet implemented)",
+      "description": "These requests document the agreed contract from docs/api-documentation.md. They will return 404 until the corresponding controllers are built.",
+      "item": [
+        {
+          "name": "[Week 3] List Crops",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/crops", "host": ["{{baseUrl}}"], "path": ["api", "crops"] } }
+        },
+        {
+          "name": "[Week 3] Create Crop",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"farmId\": 1,\n  \"cropName\": \"Wheat\",\n  \"cropType\": \"Cereal\",\n  \"sowingDate\": \"2026-11-01\",\n  \"expectedHarvestDate\": \"2027-03-15\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/crops", "host": ["{{baseUrl}}"], "path": ["api", "crops"] }
+          }
+        },
+        {
+          "name": "[Week 3] List Harvest Lots",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/harvest-lots", "host": ["{{baseUrl}}"], "path": ["api", "harvest-lots"] } }
+        },
+        {
+          "name": "[Week 3] Create Harvest Lot",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"cropId\": 1,\n  \"quantity\": 500,\n  \"unit\": \"kg\",\n  \"qualityGrade\": \"Grade A\",\n  \"expectedPrice\": 42.5\n}" },
+            "url": { "raw": "{{baseUrl}}/api/harvest-lots", "host": ["{{baseUrl}}"], "path": ["api", "harvest-lots"] }
+          }
+        },
+        {
+          "name": "[Week 4] List Buyer Requests",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/buyer-requests", "host": ["{{baseUrl}}"], "path": ["api", "buyer-requests"] } }
+        },
+        {
+          "name": "[Week 4] Create Buyer Request",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"commodity\": \"Tomato\",\n  \"quantity\": 500,\n  \"minPrice\": 30,\n  \"maxPrice\": 45,\n  \"location\": \"Ludhiana\",\n  \"requiredByDate\": \"2026-10-15\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/buyer-requests", "host": ["{{baseUrl}}"], "path": ["api", "buyer-requests"] }
+          }
+        },
+        {
+          "name": "[Week 4] List Matches",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/matches", "host": ["{{baseUrl}}"], "path": ["api", "matches"] } }
+        },
+        {
+          "name": "[Week 4] Dashboard Summary",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/dashboard/summary", "host": ["{{baseUrl}}"], "path": ["api", "dashboard", "summary"] } }
+        }
+      ]
+    }
+  ]
+}

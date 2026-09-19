@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farms — AgriBridge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="dashboard.html">AgriBridge</a>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="farms.html">Farms</a>
+      <a href="crops.html">Crops</a>
+      <a href="harvests.html">Harvest Lots</a>
+      <a href="buyers.html">Buyer Requests</a>
+      <a href="#" onclick="AgriBridgeAuth.logout(); return false;">Log Out</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="farms-alert"></div>
+
+    <div class="card">
+      <h1 id="farm-form-title">Add a Farm</h1>
+      <form id="farm-form">
+        <div class="field">
+          <label for="farmName">Farm Name</label>
+          <input type="text" id="farmName" required />
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <input type="text" id="location" required />
+        </div>
+        <div class="field">
+          <label for="landArea">Land Area (hectares)</label>
+          <input type="number" step="0.01" min="0.01" id="landArea" required />
+        </div>
+        <div class="field">
+          <label for="soilType">Soil Type (optional)</label>
+          <input type="text" id="soilType" />
+        </div>
+        <button type="submit" id="farm-submit-btn">Add Farm</button>
+        <button type="button" id="farm-cancel-btn" class="secondary">Cancel</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Your Farms</h2>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Location</th><th>Area</th><th>Soil Type</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="farms-tbody"></tbody>
+      </table>
+      <p id="farms-empty" style="display:none; color:#8a8a8a;">No farms yet — add your first one above.</p>
+    </div>
+  </main>
+
+  <footer class="app-footer">AgriBridge · Individual Project · Karman Kaur Nayyar · Week 2</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/farms.js"></script>
+</body>
+</html>
