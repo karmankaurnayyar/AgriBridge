@@ -11,8 +11,8 @@ flowchart TB
     subgraph App["Spring Boot Application (Modular Monolith)"]
         Auth["Authentication Module<br/>(implemented)"]
         FarmMod["Farm Module<br/>(implemented)"]
-        CropMod["Crop Module<br/>(entity only — Week 3)"]
-        LotMod["Harvest Lot Module<br/>(entity only — Week 3)"]
+        CropMod["Crop Module<br/>(implemented — Week 3)"]
+        LotMod["Harvest Lot Module<br/>(entity only — Week 4)"]
         BuyerMod["Buyer Request Module<br/>(entity only — Week 4)"]
         MatchMod["Matching Module<br/>(planned — Week 4)"]
     end

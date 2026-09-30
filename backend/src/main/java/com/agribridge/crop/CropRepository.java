@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-/** PLANNED FOR WEEK 3 — repository only for now; see docs/roadmap.md. */
+/** WEEK 3 — backs CropService/CropController (Crop Management, now implemented). */
 public interface CropRepository extends JpaRepository<Crop, Long> {
 
     List<Crop> findByFarmId(Long farmId);

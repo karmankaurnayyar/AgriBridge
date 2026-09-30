@@ -1,4 +1,4 @@
-# Harvest Lot Flow (Planned — Week 3)
+# Harvest Lot Flow (Planned — Week 4)
 
 ```mermaid
 flowchart TD
@@ -12,5 +12,5 @@ flowchart TD
 
 **Status:** the `HarvestLot` entity and `HarvestLotRepository` exist today
 (schema-ready), but `HarvestLotService` and `HarvestLotController` are not
-yet implemented. This diagram documents the intended flow for Week 3 — see
+yet implemented. This diagram documents the intended flow for Week 4 — see
 [../roadmap.md](../roadmap.md).

@@ -31,7 +31,7 @@ Every error response, from every endpoint, has this shape:
 
 ---
 
-## Implemented Endpoints (Week 2)
+## Implemented Endpoints (Week 2 & Week 3)
 
 ### `POST /api/auth/register`
 
@@ -120,18 +120,84 @@ Requires authentication + role `FARMER`/`ADMIN`. Same body as `POST
 
 Requires authentication + role `FARMER`/`ADMIN`. Response `204 No Content`.
 
+### `GET /api/crops?farmId={farmId}` — implemented Week 3
+
+Requires authentication. `farmId` is required; `400` if omitted. `404` if
+the farm doesn't exist or isn't owned by the caller.
+
+Response `200 OK`:
+```json
+[
+  {
+    "id": 1,
+    "farmId": 1,
+    "cropName": "Wheat",
+    "cropType": "Cereal",
+    "sowingDate": "2026-11-01",
+    "expectedHarvestDate": "2027-03-15",
+    "status": "PLANNED",
+    "createdAt": "2026-09-27T10:00:00"
+  }
+]
+```
+
+### `GET /api/crops/{id}` — implemented Week 3
+
+Requires authentication. `404` if the crop doesn't exist, or exists but
+belongs to a farm the caller doesn't own (ownership is never revealed via a
+`403`, matching the Farm Management convention).
+
+### `POST /api/crops` — implemented Week 3
+
+Requires authentication + role `FARMER`/`ADMIN`. `farmId` must reference a
+farm owned by the caller.
+
+Request:
+```json
+{
+  "farmId": 1,
+  "cropName": "Wheat",
+  "cropType": "Cereal",
+  "sowingDate": "2026-11-01",
+  "expectedHarvestDate": "2027-03-15",
+  "status": "PLANNED"
+}
+```
+
+Response `201 Created`: a `CropResponse` (as above). `status` defaults to
+`PLANNED` if omitted.
+
+Errors:
+- `400` — validation failure (blank crop name, missing `farmId`), or a
+  business-rule violation (`expectedHarvestDate` earlier than `sowingDate`,
+  or an unrecognized `status` value)
+- `401` — not authenticated
+- `403` — authenticated but wrong role
+- `404` — `farmId` doesn't exist or isn't owned by the caller
+
+### `PUT /api/crops/{id}` — implemented Week 3
+
+Requires authentication + role `FARMER`/`ADMIN`. Same body as `POST
+/api/crops`. `farmId` in the body must match the crop's existing farm —
+reassigning a crop to a different farm via update returns `400` (see
+`docs/week3/WEEK3_CODE_IMPLEMENTATION_AND_UNIT_TESTING.md` for why this was
+scoped out of Week 3). Response `200 OK` with the updated `CropResponse`.
+
+### `DELETE /api/crops/{id}` — implemented Week 3
+
+Requires authentication + role `FARMER`/`ADMIN`. Response `204 No Content`.
+
 ---
 
 ## Planned Endpoints (Not Yet Implemented)
 
 These are documented now so the API contract is agreed up front, per
-[docs/roadmap.md](roadmap.md). Calling them in Week 2 will return `404` (no
-matching controller mapping exists yet).
+[docs/roadmap.md](roadmap.md). Calling them will return `404` (no matching
+controller mapping exists yet).
 
 | Method | Endpoint | Planned For |
 |---|---|---|
-| GET / POST / PUT / DELETE | `/api/crops` | Week 3 |
-| GET / POST | `/api/harvest-lots` | Week 3 |
+| GET / POST | `/api/harvest-lots` | Week 4 |
 | GET / POST / PUT | `/api/buyer-requests` | Week 4 |
 | GET | `/api/matches` | Week 4 |
 | GET | `/api/dashboard/summary` | Week 4 |
@@ -145,5 +211,5 @@ matching controller mapping exists yet).
   missing/not-owned resource, `409` conflict (duplicate email).
 - Bean Validation on every request DTO; a global exception handler
   (`GlobalExceptionHandler`) guarantees the error shape above everywhere.
-- No explicit `/api/v1` prefix in Week 2; the URL structure (`/api/...`)
-  allows a future `/api/v2` without breaking these Week 2 endpoints.
+- No explicit `/api/v1` prefix; the URL structure (`/api/...`) allows a
+  future `/api/v2` without breaking these existing endpoints.

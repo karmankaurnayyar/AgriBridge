@@ -34,30 +34,58 @@ service & controller layers, the matching engine, the dashboard's live data,
 notifications, JWT-filter enforcement (HTTP Basic is used instead for now),
 and any deployment beyond local development.
 
-## Week 3 — Core Domain Modules (planned)
+## Week 3 — Code Implementation and Unit Testing (this deliverable)
 
-- Crop Management: `CropService` + `CropController` (full CRUD), wired to
-  the existing `Crop` entity.
+The Week 2 plan for Week 3 originally listed both Crop Management **and**
+Harvest Lot Management. The Week 3 task brief tightened scope to "one or two
+core functionalities, small enough to implement and unit-test properly
+within the week" — so **Crop Management was selected as the single Week 3
+functionality** (see
+[week3/WEEK3_CODE_IMPLEMENTATION_AND_UNIT_TESTING.md](week3/WEEK3_CODE_IMPLEMENTATION_AND_UNIT_TESTING.md),
+"Reason for Selecting", for the full justification), and Harvest Lot
+Management moves to Week 4 alongside Buyer Requests and Matching.
+
+**Implemented:**
+- Crop Management: `CropService` + `CropController` (full CRUD: create,
+  list-by-farm, get, update, delete), wired to the existing `Crop` entity
+  and enforcing farm ownership exactly as `FarmService` does for farms.
+- Business-rule validation: expected harvest date cannot precede sowing
+  date; crop status is restricted to a defined set and defaults to
+  `PLANNED`.
+- `crops.html` + `js/crops.js`: a working frontend (farm picker, add/edit/
+  delete crop, validation and error display), replacing the Week 2
+  placeholder page.
+- `CropServiceTest`: 21 JUnit 5 + Mockito test methods covering normal,
+  boundary, invalid-input, null-input and business-rule-violation cases.
+- `docs/api-documentation.md`, `docs/database-design.md` and
+  `docs/architecture.md` updated to move Crop Management from "planned" to
+  "implemented", and the Postman collection updated to match.
+
+**Explicitly not implemented in Week 3** (moved to Week 4):
+- Harvest Lot Management (`HarvestLotService`/`HarvestLotController`).
+- `JwtAuthenticationFilter` wiring — Week 2's plan to move this into Week 3
+  was reassessed; keeping Week 3 focused on one thoroughly-tested
+  functionality took priority. HTTP Basic remains the Week 3 enforcement
+  mechanism.
+- Controller-level (`MockMvc`) and integration tests — Week 3 tests are
+  service-level (Mockito) only, consistent with Week 2's testing depth.
+
+## Week 4 — Buyer Matching, Dashboard, Remaining Modules, Polish (planned)
+
 - Harvest Lot Management: `HarvestLotService` + `HarvestLotController`,
-  including server-side lot-code generation.
-- `JwtAuthenticationFilter` wired into `SecurityConfig`, replacing HTTP
-  Basic as the actual enforcement mechanism (the token itself already
-  works — see `JwtUtil`).
-- Expanded test coverage: controller tests (`MockMvc`) and repository
-  tests for the new modules.
-- Frontend: complete the `crops.html` and `harvests.html` pages against the
-  new endpoints.
-
-## Week 4 — Buyer Matching, Dashboard, Polish (planned)
-
+  including server-side lot-code generation (moved from Week 3 — see above).
 - Buyer Request Management: `BuyerRequestService` + `BuyerRequestController`.
 - Rule-based Matching engine (`Match` entity + service), filtering by
   commodity, quantity, location and price range — see
   [diagrams/buyer-matching-flow.md](diagrams/buyer-matching-flow.md).
+- `JwtAuthenticationFilter` wired into `SecurityConfig`, replacing HTTP
+  Basic as the actual enforcement mechanism (the token itself already
+  works — see `JwtUtil`).
 - Dashboard/analytics endpoint aggregating counts across modules, and the
-  `dashboard.html` page reading from it (Week 2's dashboard page shows
-  static/placeholder counts only).
-- Integration tests covering full request paths.
+  `dashboard.html` page reading from it (currently shows live Farm and Crop
+  counts computed client-side, with the rest as placeholders).
+- Controller-level (`MockMvc`) and integration tests covering full request
+  paths for all modules.
 - Basic deployment write-up (packaged JAR + managed MySQL).
 - Final documentation pass and demo walkthrough.
 

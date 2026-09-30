@@ -37,10 +37,10 @@ deployment, debugging and local development simple. See
 | Module (package) | Responsibility | Week 2 Status |
 |---|---|---|
 | `user` | User entity, Role enum, shared across modules | Implemented |
-| `auth` | Registration, login, password hashing, JWT issuance | **Implemented** |
-| `farm` | Farm CRUD, ownership enforcement | **Implemented** |
-| `crop` | Crop entity/repository | Schema ready — service/controller **planned Week 3** |
-| `harvest` | HarvestLot entity/repository | Schema ready — service/controller **planned Week 3** |
+| `auth` | Registration, login, password hashing, JWT issuance | **Implemented (Week 2)** |
+| `farm` | Farm CRUD, ownership enforcement | **Implemented (Week 2)** |
+| `crop` | Crop CRUD, farm-ownership enforcement, date/status validation | **Implemented (Week 3)** |
+| `harvest` | HarvestLot entity/repository | Schema ready — service/controller **planned Week 4** |
 | `buyer` | BuyerRequest entity/repository | Schema ready — service/controller **planned Week 4** |
 | Matching engine | Rule-based lot/request matching | **Planned Week 4** |
 | Dashboard/analytics | Aggregate counts across modules | **Planned Week 4** |
@@ -69,7 +69,11 @@ links one `HarvestLot` to one `BuyerRequest`.
   return a signed JWT via `JwtUtil`, so the frontend and Postman collection
   are forward-compatible. Wiring a `JwtAuthenticationFilter` into the
   Spring Security filter chain — so the token itself is what protects
-  endpoints, instead of HTTP Basic — is **planned for Week 3**.
+  endpoints, instead of HTTP Basic — was reassessed during Week 3 and moved
+  to **Week 4** (Crop Management was chosen as the single Week 3 focus
+  instead - see docs/week3/WEEK3_CODE_IMPLEMENTATION_AND_UNIT_TESTING.md,
+  "Reason for Selecting" - so both cannot fit in one week without spreading
+  Week 3 too thin).
 - **Authorization:** role checks via `@PreAuthorize` on controller methods
   (e.g., only `FARMER`/`ADMIN` can create/update/delete a farm) in addition
   to URL-pattern rules in `SecurityConfig`.
@@ -84,10 +88,14 @@ links one `HarvestLot` to one `BuyerRequest`.
 
 ## 7. Testing Strategy
 
-- **Unit tests** (`FarmServiceTest`, `AuthServiceTest`) using JUnit 5 and
-  Mockito, exercising ownership checks, duplicate-email rejection, and
-  BCrypt hashing behavior without a live database.
-- **Planned for Week 3/4:** controller-level tests with `MockMvc`,
+- **Unit tests** (`FarmServiceTest`, `AuthServiceTest` from Week 2;
+  `CropServiceTest` added in Week 3 — 21 test methods covering normal,
+  boundary, invalid-input, null-input and business-rule-violation cases)
+  using JUnit 5 and Mockito, exercising ownership checks, duplicate-email
+  rejection, date/status validation, and BCrypt hashing behavior without a
+  live database. See docs/week3/WEEK3_CODE_IMPLEMENTATION_AND_UNIT_TESTING.md
+  for the full test case table and execution notes.
+- **Planned for Week 4:** controller-level tests with `MockMvc`,
   repository tests against a test database, and integration tests covering
   full request paths once the Crop/Harvest Lot/Buyer Request modules are
   built out.

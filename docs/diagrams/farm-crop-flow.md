@@ -19,9 +19,9 @@ sequenceDiagram
     C-->>F: 201 Created
     F-->>U: Farm added to list
 
-    Note over U,D: Crop registration (Crop entity exists,<br/>service/controller planned for Week 3)
+    Note over U,D: Crop registration now follows this same pattern<br/>(CropController/CropService — implemented Week 3)
 ```
 
-The Farm half of this flow is **implemented** in Week 2. Crop registration
-will follow the identical controller → service → repository pattern once
-built in Week 3.
+Both halves of this flow are now **implemented**: Farm registration in
+Week 2, and Crop registration in Week 3, following the identical
+controller → service → repository pattern.

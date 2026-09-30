@@ -1,8 +1,9 @@
 # Entity Relationship Diagram (ERD)
 
 Reflects the full planned schema in [../../database/schema.sql](../../database/schema.sql).
-`users` and `farms` are backed by working JPA entities in Week 2; the rest
-are schema-ready for Week 3/4 (see [../roadmap.md](../roadmap.md)).
+`users` and `farms` are backed by working JPA entities from Week 2, and
+`crops` from Week 3; the rest are schema-ready for Week 4 (see
+[../roadmap.md](../roadmap.md)).
 
 ```mermaid
 erDiagram

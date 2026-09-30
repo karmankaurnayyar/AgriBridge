@@ -11,12 +11,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * PLANNED FOR WEEK 3 — see docs/roadmap.md.
- *
- * The entity and its matching `crops` table (database/schema.sql) are
- * included in Week 2 so the full data model can be reviewed and migrated
- * up front, but CropRepository has no accompanying service or controller
- * yet, and no Crop endpoints are exposed by the API in this deliverable.
+ * WEEK 3 — Crop Management is now implemented (see CropService,
+ * CropController). This entity and its matching `crops` table
+ * (database/schema.sql) were introduced in Week 2 as part of the full
+ * planned data model; Week 3 adds the working service/controller layer on
+ * top of it.
  */
 @Entity
 @Table(name = "crops")

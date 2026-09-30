@@ -29,7 +29,7 @@ ERD: [diagrams/erd.md](diagrams/erd.md).
 | soil_type | VARCHAR(100), nullable | |
 | created_at / updated_at | DATETIME | `updated_at` auto-updates on row change |
 
-### `crops` — schema ready, not yet wired to the backend (planned Week 3)
+### `crops` — implemented (Week 3)
 
 | Column | Type | Notes |
 |---|---|---|
@@ -41,7 +41,7 @@ ERD: [diagrams/erd.md](diagrams/erd.md).
 | status | ENUM('PLANNED','GROWING','HARVEST_READY','COMPLETED') | |
 | created_at | DATETIME | |
 
-### `harvest_lots` — schema ready, not yet wired to the backend (planned Week 3)
+### `harvest_lots` — schema ready, not yet wired to the backend (planned Week 4)
 
 | Column | Type | Notes |
 |---|---|---|

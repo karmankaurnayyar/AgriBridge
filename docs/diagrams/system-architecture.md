@@ -29,4 +29,4 @@ flowchart TB
 is implemented and working for the Authentication and Farm Management
 modules. The Security layer enforces authentication via HTTP Basic (backed
 by BCrypt-hashed passwords) for Week 2; a dedicated JWT filter is planned for
-Week 3 (see [../roadmap.md](../roadmap.md)).
+Week 4 (see [../roadmap.md](../roadmap.md)).
