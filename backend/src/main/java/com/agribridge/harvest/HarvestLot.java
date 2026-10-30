@@ -37,7 +37,7 @@ public class HarvestLot {
     private Long cropId;
 
     @Column(nullable = false)
-    private Double quantity;
+    private BigDecimal quantity;
 
     @Column(length = 20)
     private String unit; // e.g., kg, quintal

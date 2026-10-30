@@ -40,7 +40,7 @@ public class BuyerRequest {
     private String commodity;
 
     @Column(nullable = false)
-    private Double quantity;
+    private BigDecimal quantity;
 
     @Column(name = "min_price", precision = 10, scale = 2)
     private BigDecimal minPrice;
